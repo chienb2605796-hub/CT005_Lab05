@@ -221,6 +221,135 @@
             border: 0;
         }
 
+        .site-nav {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: -18px 0 32px;
+        }
+
+        .site-nav a,
+        .profile-tag {
+            color: var(--text-muted);
+            text-decoration: none;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 999px;
+            padding: 8px 15px;
+            font-size: 0.88rem;
+        }
+
+        .site-nav a:hover {
+            color: var(--accent-cyan);
+            border-color: var(--border-glow);
+        }
+
+        .profile-details {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 22px;
+        }
+
+        .profile-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        .profile-tag i { color: var(--accent-cyan); }
+
+        .section-intro {
+            color: var(--text-muted);
+            margin: -10px 0 24px;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .product-card {
+            min-width: 0;
+            overflow: hidden;
+            background: rgba(7, 10, 18, 0.58);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 18px;
+            transition: transform 0.25s ease, border-color 0.25s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-cyan);
+        }
+
+        .product-preview {
+            height: 310px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: #0b1220;
+        }
+
+        .product-preview > iframe,
+        .product-preview > img {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .product-preview > img {
+            object-fit: contain;
+            padding: 10px;
+        }
+
+        .product-preview.product-video .shorts-container {
+            width: 174px;
+            height: 310px;
+            max-width: none;
+            aspect-ratio: auto;
+            border-radius: 12px;
+        }
+
+        .product-info { padding: 20px; }
+
+        .product-type {
+            color: var(--accent-cyan);
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .product-info h3 {
+            color: var(--text-main);
+            font-size: 1.05rem;
+            margin: 7px 0;
+        }
+
+        .product-info p {
+            min-height: 44px;
+            color: var(--text-muted);
+            font-size: 0.88rem;
+        }
+
+        .product-action {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 16px;
+            color: var(--accent-cyan);
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .product-action:hover { color: #fff; }
+
         /* Footer */
         footer {
             background: var(--card-bg);
@@ -265,6 +394,12 @@
             h1 { font-size: 1.7rem; }
             .info-grid { grid-template-columns: 1fr; }
             .glass-card { padding: 20px; }
+            .portfolio-grid { grid-template-columns: 1fr; }
+            .product-preview { height: 360px; }
+            .product-preview.product-video .shorts-container {
+                width: 202px;
+                height: 360px;
+            }
         }
     </style>
 </head>
@@ -274,73 +409,81 @@
         <!-- Header -->
         <header>
             <div class="author-badge"><i class="fa-solid fa-user-gear"></i> Tác giả: Lý Hoàng Chiến</div>
-            <h1>Ứng Dụng Công Nghệ Số Trong Học Tập</h1>
-            <p class="subtitle">Báo cáo tổng quan Nhiệm vụ 3.1 - Lab 05</p>
+            <h1>Lý Hoàng Chiến</h1>
+            <p class="subtitle">Sinh viên ngành Trí tuệ nhân tạo · Hồ sơ học tập và sản phẩm số</p>
+            <div class="profile-details" aria-label="Thông tin sinh viên">
+                <span class="profile-tag"><i class="fa-solid fa-id-card"></i> B2605796</span>
+                <span class="profile-tag"><i class="fa-solid fa-graduation-cap"></i> Trí tuệ nhân tạo A1</span>
+                <span class="profile-tag"><i class="fa-solid fa-book-open"></i> Lab 05</span>
+            </div>
         </header>
 
-        <!-- Section 1: Infographic Native HTML/CSS -->
-        <section class="glass-card">
-            <h2 class="card-title"><i class="fa-solid fa-chart-pie"></i> 1. Infographic Lợi Ích Của Công Nghệ Số</h2>
-            
-            <div class="native-infographic">
-                <div class="info-header">
-                    <h2>LỢI ÍCH CỦA CÔNG NGHỆ SỐ</h2>
-                    <p>TRONG HỌC TẬP VÀ GIẢNG DẠY</p>
+        <nav class="site-nav" aria-label="Điều hướng trang">
+            <a href="#san-pham">Sản phẩm</a>
+            <a href="#nguon">Nguồn tài liệu</a>
+        </nav>
+
+        <main>
+            <section class="glass-card" id="san-pham">
+                <h2 class="card-title"><i class="fa-solid fa-folder-open"></i> Sản phẩm học tập</h2>
+                <p class="section-intro">Một số sản phẩm tiêu biểu được thực hiện trong Lab 05.</p>
+
+                <div class="portfolio-grid">
+                    <article class="product-card">
+                        <div class="product-preview">
+                            <iframe src="Lab05_Ex1.2.pdf#toolbar=0&amp;navpanes=0" title="Bản xem trước PDF Bài 1.2"></iframe>
+                        </div>
+                        <div class="product-info">
+                            <span class="product-type">Bài 1.2 · Tài liệu PDF</span>
+                            <h3>Báo cáo Bài 1.2</h3>
+                            <p>Tài liệu báo cáo về ứng dụng công nghệ số trong học tập.</p>
+                            <a class="product-action" href="Lab05_Ex1.2.pdf" target="_blank" rel="noopener">
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i> Mở tài liệu
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="product-card">
+                        <div class="product-preview">
+                            <img src="Lab05_Ex2.1.png.png" alt="Infographic Bài 2.1 về lợi ích của công nghệ số trong học tập và giảng dạy">
+                        </div>
+                        <div class="product-info">
+                            <span class="product-type">Bài 2.1 · Infographic PNG</span>
+                            <h3>Lợi ích của công nghệ số</h3>
+                            <p>Infographic tóm tắt những lợi ích của công nghệ số trong giáo dục.</p>
+                            <a class="product-action" href="Lab05_Ex2.1.png.png" target="_blank" rel="noopener">
+                                <i class="fa-solid fa-image"></i> Xem ảnh đầy đủ
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="product-card">
+                        <div class="product-preview product-video">
+                            <div class="shorts-container">
+                                <iframe
+                                    src="https://www.youtube.com/embed/4gLeFoReBb0"
+                                    title="YouTube Shorts - Lợi ích của công nghệ số"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                    referrerpolicy="strict-origin-when-cross-origin"
+                                    allowfullscreen>
+                                </iframe>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <span class="product-type">Video · YouTube Shorts</span>
+                            <h3>Minh họa trực quan</h3>
+                            <p>Video ngắn minh họa chủ đề công nghệ số trong học tập.</p>
+                            <a class="product-action" href="https://www.youtube.com/shorts/4gLeFoReBb0" target="_blank" rel="noopener">
+                                <i class="fa-brands fa-youtube"></i> Xem trên YouTube
+                            </a>
+                        </div>
+                    </article>
                 </div>
-
-                <div class="info-grid">
-                    <div class="info-item">
-                        <div class="info-num">01</div>
-                        <div class="info-content">
-                            <h3>Tiếp cận kho trí thức toàn cầu</h3>
-                            <p>Người học có thể truy cập hàng triệu tài liệu, khóa học trực tuyến và thư viện số mọi lúc, mọi nơi chỉ với thiết bị kết nối Internet.</p>
-                        </div>
-                    </div>
-
-                    <div class="info-item">
-                        <div class="info-num">02</div>
-                        <div class="info-content">
-                            <h3>Cá nhân hóa lộ trình học tập</h3>
-                            <p>Công nghệ AI phân tích năng lực cá nhân, đề xuất bài tập và tiến độ học phù hợp với tốc độ tiếp thu của từng sinh viên.</p>
-                        </div>
-                    </div>
-
-                    <div class="info-item">
-                        <div class="info-num">03</div>
-                        <div class="info-content">
-                            <h3>Tăng cường tương tác & Làm việc nhóm</h3>
-                            <p>Các công cụ cộng tác trực tuyến như Google Docs, Canva, Miro giúp làm việc nhóm linh hoạt và chia sẻ tài nguyên nhanh chóng.</p>
-                        </div>
-                    </div>
-
-                    <div class="info-item">
-                        <div class="info-num">04</div>
-                        <div class="info-content">
-                            <h3>Tối ưu hóa thời gian & Chi phí</h3>
-                            <p>Giảm thiểu chi phí in ấn tài liệu, di chuyển. Học sinh có thể chủ động sắp xếp thời gian học tập cân bằng với cuộc sống.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Section 2: YouTube Shorts -->
-        <section class="glass-card">
-            <h2 class="card-title"><i class="fa-solid fa-circle-play"></i> 2. Video Minh Họa Trực Quan (YouTube Shorts)</h2>
-            <div class="video-wrapper">
-                <div class="shorts-container">
-                    <iframe 
-                        src="https://www.youtube.com/embed/4gLeFoReBb0"  
-                        title="YouTube Shorts - Lợi ích của công nghệ số"  
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"  
-                        allowfullscreen> 
-                    </iframe> 
-                </div> 
-            </div> 
-        </section> 
+            </section>
+        </main>
 
         <!-- Footer / License Notes --> 
-        <footer> 
+        <footer id="nguon"> 
             <strong><i class="fa-solid fa-shield-halved"></i> Ghi chú bản quyền & Nguồn tài liệu:</strong> 
             <ul> 
                 <li><i class="fa-solid fa-check"></i> <div><strong>Nội dung & Báo cáo:</strong> Google Gemini</div></li> 
